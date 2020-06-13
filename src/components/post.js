@@ -42,13 +42,17 @@ const Post = posts => {
                 <Text style={{margin: 10}}>{item.body}</Text>
                 <Button
                   onPress={() => {
-                    setPostId(id);
-                    setShowComments(true);
+                    setPostId(item.id);
+                    setShowComments(!showComments);
                   }}
                   title="Comments"
                   color="#BBDEFB"
                 />
-                {showComments ? <Comments postId={item.id} /> : <View></View>}
+                {showComments && item.id == postId ? (
+                  <Comments postId={postId} />
+                ) : (
+                  <View></View>
+                )}
               </View>
             </Card>
           </View>

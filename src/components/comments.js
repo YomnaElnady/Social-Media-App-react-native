@@ -9,7 +9,6 @@ const Comments = id => {
   const [showComments, setShowComments] = useState(false);
   useEffect(() => {
     if (!commentsFetched) {
-      console.log(commentsFetched);
       axios
         .get(`https://jsonplaceholder.typicode.com/posts/${id.postId}/comments`)
         .then(res => {
@@ -19,7 +18,6 @@ const Comments = id => {
         });
     }
   }, [comments]);
-
   return (
     <View
       style={{
@@ -27,17 +25,11 @@ const Comments = id => {
         justifyContent: 'space-between',
         marginTop: 10,
       }}>
-      <Button
-        onPress={onPressLearnMore}
-        title="Read More"
-        color="#BBDEFB"
-        style={{marginBottom: 20}}
-      />
       <FlatList
-        data={currentPosts}
+        data={comments}
         renderItem={({item}) => (
           <View>
-            <Card title={item.title.toUpperCase()}>
+            <Card title={item.name.toUpperCase()}>
               <View style={{justifyContent: 'space-between'}}>
                 <Text style={{margin: 10}}>{item.body}</Text>
               </View>
